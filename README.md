@@ -5,4 +5,6 @@
 ![image](https://github.com/user-attachments/assets/68a72445-2d6c-410a-bfef-0afc86d26825)
 5. 최종적으로 show_st.py를 실행히 다음과 같은 화면이 확인 됩니다.
 ![image](https://github.com/user-attachments/assets/20911b21-78f4-4ec6-a37f-f0aeab4d49e5)
+6. 영상은 아래와 같이 확인되어졌습니다.
+https://github.com/user-attachments/assets/e17773ba-7478-4f0c-bf48-b27ce7919c72
 
