@@ -1,0 +1,30 @@
+import os
+import pandas as pd
+import random
+import re
+from datetime import datetime
+
+data_path = '/Users/jake/Downloads/ml-1m' 
+
+
+users_df = pd.read_csv(f'{data_path}/users_prepro.csv')
+ratings_df = pd.read_csv(f'{data_path}/ratings_prepro.csv')
+movies_df = pd.read_csv(f'{data_path}/movies_prepro.csv')
+
+ratings_df['label'] = ratings_df['rating'].apply(lambda x : x >=4).astype(int)
+
+ratings_df = ratings_df[['user_id', 'movie_id', 'rating_year','rating_month', 'rating_decade', 'label']]
+
+movies_df = movies_df[['movie_id', 'movie_decade', 'movie_year', 'genre1', 'genre2', 'genre3']]
+users_df = users_df[['user_id', 'gender', 'age', 'occupation', 'zip']]
+
+merge_mlens_data = pd.merge(ratings_df, movies_df, on='movie_id')
+merge_mlens_data = pd.merge(merge_mlens_data, users_df, on='user_id')
+merge_mlens_data.fillna('no', inplace=True)
+
+merge_mlens_data = merge_mlens_data[['user_id', 'movie_id','movie_decade', 'movie_year', 'rating_year', 'rating_month', 'rating_decade', 'genre1','genre2', 'genre3', 'gender', 'age', 'occupation', 'zip', 'label']]
+
+
+merge_mlens_data.to_csv(f'{data_path}/movielens_rcmm_v2.csv', index=False)
+
+print("전처리 완료")
